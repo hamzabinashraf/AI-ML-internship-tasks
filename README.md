@@ -144,3 +144,40 @@ The project successfully explored and preprocessed the house price dataset, buil
 *   Investigate the impact of different encoding strategies for categorical variables.
 *   Consider advanced techniques for handling outliers or skewed distributions.
 *   Explore other regression models or ensemble methods.
+
+# Task3: Tesla Stock Price Prediction (Short-Term)
+
+This project demonstrates a simple approach to predicting the next day's closing price of Tesla (TSLA) stock using historical data and a Random Forest Regressor model.
+
+## Objective
+
+The main goal is to use historical stock data, specifically the Open, High, Low, and Volume features, to build a model that can predict the closing price of Tesla stock for the following trading day.
+
+## Project Steps
+
+The project follows these key steps:
+
+1.  **Install & Import Libraries:** Necessary libraries like `yfinance`, `pandas`, `numpy`, `matplotlib`, `seaborn`, and scikit-learn modules (for modeling and evaluation) are installed and imported.
+2.  **Load Historical Stock Data:** Tesla stock data is downloaded from Yahoo Finance for a specified date range (2020-01-01 to 2024-12-31) using the `yfinance` library.
+3.  **Prepare Dataset for Prediction:**
+    *   A new column `Target_Close` is created by shifting the `Close` price column up by one row. This makes the next day's close price the target variable for prediction.
+    *   Rows with missing values (the last row after shifting) are removed.
+    *   The data is split into features (Open, High, Low, Volume) and the target variable (`Target_Close`).
+    *   The dataset is divided into training (80%) and testing (20%) sets, maintaining the time order of the data.
+4.  **Train the Model:**
+    *   A `RandomForestRegressor` model is initialized with 100 estimators and a fixed random state for reproducibility.
+    *   The model is trained using the training data (`X_train`, `y_train`).
+    *   Predictions are made on the test set (`X_test`).
+5.  **Visualize Actual vs Predicted Prices:** A plot is generated to visually compare the actual closing prices from the test set with the prices predicted by the model. This helps in understanding how well the model's predictions align with the real data.
+6.  **Evaluate the Model:** The performance of the model is evaluated using common regression metrics:
+    *   **Mean Absolute Error (MAE):** Measures the average magnitude of the errors in a set of predictions, without considering their direction.
+    *   **Root Mean Squared Error (RMSE):** Measures the square root of the average of the squared errors. It gives a relatively high weight to large errors.
+
+## Results
+
+After training and evaluating the model, the following metrics were obtained:
+
+*   **Mean Absolute Error (MAE):** 8.91
+*   **Root Mean Squared Error (RMSE):** 14.13
+
+The visualization also shows the trend of actual vs. predicted prices over the test period.
